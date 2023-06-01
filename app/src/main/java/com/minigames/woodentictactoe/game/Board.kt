@@ -1,9 +1,8 @@
 package com.minigames.woodentictactoe.game
 
+private val BLANK: Char? = null
+
 class Board(private val width: Int) {
-    companion object {
-        private val BLANK: Char? = null
-    }
 
     private var numberOfSpaces: Int = 0
     var numberOfBlanks: Int = 0
@@ -46,6 +45,9 @@ class Board(private val width: Int) {
     fun toArray(): List<Char?> {
         return board.flatten()
     }
+
+    fun getBoard(): Array<Array<Char?>> = board
+
 
     private fun squareArray(array: List<Int>): List<Pair<Int, Int>> {
         return array.flatMap { i -> array.map { j -> Pair(i, j) } }

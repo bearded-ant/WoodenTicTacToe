@@ -3,13 +3,16 @@ package com.minigames.woodentictactoe
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
 import com.minigames.woodentictactoe.game.Board
+import com.minigames.woodentictactoe.game.GameState
 
 class MainActivity : AppCompatActivity() {
 
     private var board = Board(3)
+    private var gameState = GameState()
     private lateinit var binding: ActivityMainBinding
     private var flag = false
 
@@ -52,17 +55,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun playerHint(space: Int, img: ImageView) {
-        if (board.isBlank(space))
+        if (gameState.isBlankSpace(space))
             if (flag) {
                 img.setImageResource(R.drawable.xf)
                 img.visibility = View.VISIBLE
-                board.placePiece('x', space)
+                gameState.makeMove(space, 'x')
+//                board.placePiece('x', space)
                 flag = false
             } else {
                 img.setImageResource(R.drawable.of)
                 img.visibility = View.VISIBLE
+                gameState.makeMove(space, 'o')
                 flag = true
-                board.placePiece('0', space)
+//                board.placePiece('0', space)
             }
+
+        if (gameState.isOver())
+            if (gameState.winnerExists())
+                Toast.makeText(this, "${gameState.winner} won!", Toast.LENGTH_LONG).show()
+            else Toast.makeText(this, "ничья", Toast.LENGTH_LONG).show()
     }
 }
