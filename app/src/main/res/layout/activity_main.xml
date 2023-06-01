@@ -5,6 +5,28 @@
     android:layout_height="match_parent"
     android:background="#1C1C1C">
 
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/item_field"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/field"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/loadViewButton"
         android:layout_width="wrap_content"
@@ -44,6 +66,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/choice" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/item_field"
+        app:layout_constraintStart_toStartOf="@id/item_field"
+        app:layout_constraintTop_toBottomOf="@id/arrayView"
+        app:layout_constraintTop_toTopOf="@id/item_field">
+
+        <include
+            android:id="@+id/cell00"
+            layout="@layout/item_field" />
+
+        <include
+            android:id="@+id/cell01"
+            layout="@layout/item_field" />
+
+        <include
+            android:id="@+id/cell02"
+            layout="@layout/item_field" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="148dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/item_field"
+        app:layout_constraintStart_toStartOf="@id/item_field"
+        app:layout_constraintTop_toBottomOf="@id/arrayView"
+        app:layout_constraintTop_toTopOf="@id/item_field">
+
+        <include
+            android:id="@+id/cell10"
+            layout="@layout/item_field">
+
+        <include
+            android:id="@+id/cell11"
+            layout="@layout/item_field" />
+
+        <include
+            android:id="@+id/cell12"
+            layout="@layout/item_field" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="254dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/item_field"
+        app:layout_constraintStart_toStartOf="@id/item_field"
+        app:layout_constraintTop_toBottomOf="@id/arrayView"
+        app:layout_constraintTop_toTopOf="@id/item_field">
+
+        <include
+            android:id="@+id/cell20"
+            layout="@layout/item_field" />
+
+        <include
+            android:id="@+id/cell21"
+            layout="@layout/item_field" />
+
+        <include
+            android:id="@+id/cell22"
+            layout="@layout/item_field" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
