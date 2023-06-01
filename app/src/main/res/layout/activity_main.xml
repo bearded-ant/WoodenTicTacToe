@@ -36,36 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/unloadViewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="Unload View"
-        android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@id/loadViewButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/choice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/white"
-        android:textSize="35sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loadViewButton" />
-
-    <TextView
-        android:id="@+id/arrayView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/choice" />
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +44,6 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
         app:layout_constraintStart_toStartOf="@id/item_field"
-        app:layout_constraintTop_toBottomOf="@id/arrayView"
         app:layout_constraintTop_toTopOf="@id/item_field">
 
         <include
@@ -99,12 +68,11 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
         app:layout_constraintStart_toStartOf="@id/item_field"
-        app:layout_constraintTop_toBottomOf="@id/arrayView"
         app:layout_constraintTop_toTopOf="@id/item_field">
 
         <include
             android:id="@+id/cell10"
-            layout="@layout/item_field">
+            layout="@layout/item_field" />
 
         <include
             android:id="@+id/cell11"
@@ -124,7 +92,6 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
         app:layout_constraintStart_toStartOf="@id/item_field"
-        app:layout_constraintTop_toBottomOf="@id/arrayView"
         app:layout_constraintTop_toTopOf="@id/item_field">
 
         <include
