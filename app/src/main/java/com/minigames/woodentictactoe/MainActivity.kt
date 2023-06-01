@@ -1,9 +1,14 @@
 package com.minigames.woodentictactoe
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
 import com.minigames.woodentictactoe.game.Board
@@ -71,8 +76,22 @@ class MainActivity : AppCompatActivity() {
             }
 
         if (gameState.isOver())
-            if (gameState.winnerExists())
-                Toast.makeText(this, "${gameState.winner} won!", Toast.LENGTH_LONG).show()
-            else Toast.makeText(this, "ничья", Toast.LENGTH_LONG).show()
+            if (gameState.winnerExists()) {
+                showCustomAlertDialog(this, "${gameState.winner} won!")
+            } else Toast.makeText(this, "ничья", Toast.LENGTH_LONG).show()
+    }
+
+    fun showCustomAlertDialog(context: Context, message: String) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.item_game_over, null)
+        alertDialogBuilder.setView(view)
+
+        view.findViewById<TextView>(R.id.dialog_message).text = message
+        view.findViewById<Button>(R.id.item_alert_btn_ok)
+            .setOnClickListener { }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 }
