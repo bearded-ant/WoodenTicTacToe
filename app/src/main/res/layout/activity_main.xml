@@ -6,9 +6,9 @@
     android:background="#1C1C1C">
 
     <ImageView
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/background"
         android:scaleType="centerCrop"
         android:src="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:contentDescription="@string/field"
         android:id="@+id/item_field"
         android:layout_width="380dp"
         android:layout_height="380dp"
@@ -31,7 +32,7 @@
         android:id="@+id/loadViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load View"
+        android:text="@string/load_view"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +40,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
@@ -63,7 +64,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="148dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
@@ -87,7 +88,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="254dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/item_field"
