@@ -7,7 +7,7 @@ class Board(private val width: Int) {
     private var numberOfSpaces: Int = 0
     var numberOfBlanks: Int = 0
     var numberOfOccupied: Int = 0
-    private val blankSpaces: MutableList<Pair<Int, Int>>
+    val blankSpaces: MutableList<Pair<Int, Int>>
     private val board: Array<Array<Char?>>
 
     init {

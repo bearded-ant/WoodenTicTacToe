@@ -7,8 +7,8 @@ private const val ROW_PREFIX = "r"
 private const val WIDTH = 3
 
 class GameState(
-    private val playerPiece: Char = 'x',
-    private val opponentPiece: Char = 'o'
+    val playerPiece: Char = 'x',
+    val opponentPiece: Char = 'o'
 ) {
 
     private val maxIndex: Int = WIDTH - 1
@@ -20,18 +20,12 @@ class GameState(
     var winner: Char? = null
 
     fun makeMove(space: Int, piece: Char) {
-//        val newState = GameState(opponentPiece, playerPiece)
         board = board.placePiece(piece, space)
-
-//        newState.impossibleLines = ArrayList(impossibleLines)
-
         checkForWin()
-//        return newState
     }
 
-//    val availableMoves: List<Int>
-//        get() = board.blankSpaces
-
+    val availableMoves: MutableList<Pair<Int, Int>> = board.blankSpaces
+    val notAvailable = board.toArray()
     val cornerSpaces: List<Pair<Int, Int>>
         get() = listOf(
             Pair(0, 0),
@@ -40,8 +34,7 @@ class GameState(
             Pair(maxIndex, maxIndex)
         )
 
-//    val isUnplayed: Boolean
-//        get() = board.isBlank
+    val isUnplayed: Boolean = board.isAllBlank()
 
 //    val finalMove: Int? = if (board.numberOfBlanks == 1) board.blankSpaces.first() else null
 

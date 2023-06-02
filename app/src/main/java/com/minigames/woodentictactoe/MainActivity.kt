@@ -2,10 +2,12 @@ package com.minigames.woodentictactoe
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var gameState: GameState
     private lateinit var binding: ActivityMainBinding
-    private var flag = false
+    private var flag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +31,13 @@ class MainActivity : AppCompatActivity() {
         binding.newGame.setOnClickListener {
             gameState = GameState()
             setFieldInvisible()
-            flag = false
+            flag = true
             blockField(false)
         }
 
         initFieldButtons()
+
+//        androidHint()
     }
 
     private fun initFieldButtons() {
@@ -69,18 +73,23 @@ class MainActivity : AppCompatActivity() {
     private fun playerHint(space: Int, img: ImageView) {
         if (gameState.isBlankSpace(space))
             if (flag) {
-                img.setImageResource(R.drawable.xf)
+                val drawable = R.drawable.xf
+                img.setImageResource(drawable)
                 img.visibility = View.VISIBLE
                 gameState.makeMove(space, 'x')
 //                board.placePiece('x', space)
                 flag = false
-            } else {
-                img.setImageResource(R.drawable.of)
-                img.visibility = View.VISIBLE
-                gameState.makeMove(space, 'o')
-                flag = true
-//                board.placePiece('0', space)
+
+                androidHint()
+
             }
+//            } else {
+//                img.setImageResource(R.drawable.of)
+//                img.visibility = View.VISIBLE
+//                gameState.makeMove(space, 'o')
+//                flag = true
+////                board.placePiece('0', space)
+//            }
 
         if (gameState.isOver()) {
             blockField(true)
@@ -126,5 +135,70 @@ class MainActivity : AppCompatActivity() {
         binding.cell20.itemImage.visibility = View.INVISIBLE
         binding.cell21.itemImage.visibility = View.INVISIBLE
         binding.cell22.itemImage.visibility = View.INVISIBLE
+    }
+
+    private fun androidHint() {
+        if (!flag) {
+            if (!gameState.isOver()) {
+                val availableHint = gameState.availableMoves.random()
+                val space = 3 * availableHint.first + availableHint.second
+                Log.d("ai_hint", "androidHint: ${gameState.availableMoves} $availableHint $space ")
+                if (gameState.isBlankSpace(space)) {
+                    gameState.makeMove(space, 'o')
+                    drawHint(space, R.drawable.of)
+                    flag = true
+                } else Toast.makeText(this, "наебался $space!", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun drawHint(index: Int, img: Int) {
+
+        when (index) {
+            0 -> {
+                binding.cell00.itemImage.visibility = View.VISIBLE
+                binding.cell00.itemImage.setImageResource(img)
+            }
+
+            1 -> {
+                binding.cell01.itemImage.visibility = View.VISIBLE
+                binding.cell01.itemImage.setImageResource(img)
+            }
+
+            2 -> {
+                binding.cell02.itemImage.visibility = View.VISIBLE
+                binding.cell02.itemImage.setImageResource(img)
+            }
+
+            3 -> {
+                binding.cell10.itemImage.visibility = View.VISIBLE
+                binding.cell10.itemImage.setImageResource(img)
+            }
+
+            4 -> {
+                binding.cell11.itemImage.visibility = View.VISIBLE
+                binding.cell11.itemImage.setImageResource(img)
+            }
+
+            5 -> {
+                binding.cell12.itemImage.visibility = View.VISIBLE
+                binding.cell12.itemImage.setImageResource(img)
+            }
+
+            6 -> {
+                binding.cell20.itemImage.visibility = View.VISIBLE
+                binding.cell20.itemImage.setImageResource(img)
+            }
+
+            7 -> {
+                binding.cell21.itemImage.visibility = View.VISIBLE
+                binding.cell21.itemImage.setImageResource(img)
+            }
+
+            8 -> {
+                binding.cell22.itemImage.visibility = View.VISIBLE
+                binding.cell22.itemImage.setImageResource(img)
+            }
+        }
     }
 }
