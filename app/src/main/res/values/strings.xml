@@ -3,4 +3,6 @@
     <string name="background">backGround</string>
     <string name="field">field</string>
     <string name="load_view">Load View</string>
+    <string name="game_over">Game Over</string>
+    <string name="btn_ok">btn OK</string>
 </resources>
