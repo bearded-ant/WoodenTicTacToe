@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
 import com.minigames.woodentictactoe.game.Board
 import com.minigames.woodentictactoe.game.GameState
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         alertDialogBuilder.setView(view)
 
         view.findViewById<TextView>(R.id.dialog_message).text = message
-        view.findViewById<Button>(R.id.item_alert_btn_ok)
+        view.findViewById<AppCompatImageButton>(R.id.item_alert_btn_ok)
             .setOnClickListener { }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

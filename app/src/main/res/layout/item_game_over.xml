@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/alert"
+            android:src="@drawable/alert2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start"
             android:text="Game Over"
-            android:textColor="#FFC107"
+            android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/dialog_message"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start"
             android:gravity="center"
-            android:textColor="#FFC107"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:text="Player2 WON!"
             app:layout_constraintBottom_toTopOf="@id/item_alert_btn_ok"
@@ -54,10 +54,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dialog_title" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_alert_btn_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="47dp"
+            android:background="@drawable/ok"
             android:text="OK"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
