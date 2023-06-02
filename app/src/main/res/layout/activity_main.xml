@@ -29,11 +29,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/loadViewButton"
+        android:id="@+id/new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/load_view"
-        android:textSize="22sp"
+        android:text="@string/new_game"
+        android:fontFamily="@font/press_start"
+        android:textSize="16sp"
+        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,6 +110,18 @@
             layout="@layout/item_field" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <FrameLayout
+        android:id="@+id/isOver"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        app:layout_constraintEnd_toEndOf="@id/item_field"
+        app:layout_constraintStart_toStartOf="@id/item_field"
+        app:layout_constraintTop_toTopOf="@id/item_field"
+        app:layout_constraintBottom_toBottomOf="@id/item_field"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

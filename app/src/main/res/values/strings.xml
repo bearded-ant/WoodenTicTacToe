@@ -5,4 +5,7 @@
     <string name="load_view">Load View</string>
     <string name="game_over">Game Over</string>
     <string name="btn_ok">btn OK</string>
+    <string name="draw">nobody won, draw</string>
+    <string name="won">WON!</string>
+    <string name="new_game">new game</string>
 </resources>

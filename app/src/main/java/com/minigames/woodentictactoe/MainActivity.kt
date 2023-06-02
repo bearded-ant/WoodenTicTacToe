@@ -4,34 +4,39 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
-import com.minigames.woodentictactoe.game.Board
 import com.minigames.woodentictactoe.game.GameState
 
 class MainActivity : AppCompatActivity() {
 
-    private var board = Board(3)
-    private var gameState = GameState()
+    private lateinit var gameState: GameState
     private lateinit var binding: ActivityMainBinding
     private var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            gameState = GameState()
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initButtons()
+        binding.newGame.setOnClickListener {
+            gameState = GameState()
+            setFieldInvisible()
+            flag = false
+            blockField(false)
+        }
+
+        initFieldButtons()
     }
 
-    private fun initButtons() {
+    private fun initFieldButtons() {
         binding.cell00.itemCard.setOnClickListener {
             playerHint(0, binding.cell00.itemImage)
         }
@@ -77,10 +82,16 @@ class MainActivity : AppCompatActivity() {
 //                board.placePiece('0', space)
             }
 
-        if (gameState.isOver())
+        if (gameState.isOver()) {
+            blockField(true)
             if (gameState.winnerExists()) {
-                showCustomAlertDialog(this, "${gameState.winner} won!")
-            } else Toast.makeText(this, "ничья", Toast.LENGTH_LONG).show()
+                showCustomAlertDialog(
+                    this,
+                    "Player ${gameState.winner!!.uppercaseChar()} ${getString(R.string.won)}"
+                )
+            } else
+                showCustomAlertDialog(this, getString(R.string.draw))
+        }
     }
 
     fun showCustomAlertDialog(context: Context, message: String) {
@@ -91,9 +102,29 @@ class MainActivity : AppCompatActivity() {
         alertDialogBuilder.setView(view)
 
         view.findViewById<TextView>(R.id.dialog_message).text = message
-        view.findViewById<AppCompatImageButton>(R.id.item_alert_btn_ok)
-            .setOnClickListener { }
+
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
+
+        view.findViewById<AppCompatImageButton>(R.id.item_alert_btn_ok)
+            .setOnClickListener {
+                alertDialog.cancel()
+            }
+    }
+
+    private fun blockField(flag: Boolean) {
+        binding.isOver.visibility = if (flag) View.VISIBLE else View.GONE
+    }
+
+    private fun setFieldInvisible() {
+        binding.cell00.itemImage.visibility = View.INVISIBLE
+        binding.cell01.itemImage.visibility = View.INVISIBLE
+        binding.cell02.itemImage.visibility = View.INVISIBLE
+        binding.cell10.itemImage.visibility = View.INVISIBLE
+        binding.cell11.itemImage.visibility = View.INVISIBLE
+        binding.cell12.itemImage.visibility = View.INVISIBLE
+        binding.cell20.itemImage.visibility = View.INVISIBLE
+        binding.cell21.itemImage.visibility = View.INVISIBLE
+        binding.cell22.itemImage.visibility = View.INVISIBLE
     }
 }
