@@ -30,73 +30,71 @@
 
 
         <RadioGroup
-            android:id="@+id/who_is_playing"
+            android:id="@+id/item_settings_game_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:checkedButton="@id/player_vs_bot"
-            app:layout_constraintBottom_toTopOf="@id/who_the_first"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
-                android:id="@+id/player_vs_player"
+                android:id="@+id/item_settings_player_vs_player"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/player_vs_player" />
 
             <RadioButton
-                android:id="@+id/player_vs_bot"
+                android:id="@+id/item_settings_player_vs_bot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/player_vs_bot" />
         </RadioGroup>
 
+<!--        <RadioGroup-->
+<!--            android:id="@+id/item_settings_who_the_first"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginVertical="8dp"-->
+
+<!--            app:layout_constraintBottom_toTopOf="@id/item_settings_difficulty"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/item_settings_game_mode">-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/item_settings_who_the_first_X"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/x_goes_first" />-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/item_settings_who_the_first_O"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/o_goes_first" />-->
+
+<!--        </RadioGroup>-->
+
         <RadioGroup
-            android:id="@+id/who_the_first"
+            android:id="@+id/item_settings_difficulty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:checkedButton="@id/X_the_first"
-            app:layout_constraintBottom_toTopOf="@id/difficulty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/who_is_playing">
-
-            <RadioButton
-                android:id="@+id/X_the_first"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/x_goes_first" />
-
-            <RadioButton
-                android:id="@+id/O_the_first"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/o_goes_first" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:checkedButton="@id/easy"
             app:layout_constraintBottom_toTopOf="@id/item_settings_buttons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/who_the_first">
+            app:layout_constraintTop_toBottomOf="@id/item_settings_game_mode">
 
             <RadioButton
-                android:id="@+id/easy"
+                android:id="@+id/item_settings_difficulty_easy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/easy" />
 
             <RadioButton
-                android:id="@+id/hard"
+                android:id="@+id/item_settings_difficulty_hard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/hard" />
@@ -112,7 +110,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/difficulty">
+            app:layout_constraintTop_toBottomOf="@id/item_settings_difficulty">
 
 
             <androidx.appcompat.widget.AppCompatImageButton

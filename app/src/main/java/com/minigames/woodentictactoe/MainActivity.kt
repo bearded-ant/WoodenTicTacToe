@@ -6,17 +6,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
+import com.minigames.woodentictactoe.game.EASY
 import com.minigames.woodentictactoe.game.GameState
+import com.minigames.woodentictactoe.game.HARD
+import com.minigames.woodentictactoe.game.PLAYER_VS_BOT
+import com.minigames.woodentictactoe.game.PLAYER_VS_PLAYER
+import com.minigames.woodentictactoe.game.Settings
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var gameState: GameState
+    private lateinit var settings: Settings
     private lateinit var binding: ActivityMainBinding
     private var flag = true
 
@@ -24,23 +32,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             gameState = GameState()
+            settings = Settings()
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.newGame.setOnClickListener {
-            gameState = GameState()
-            setFieldInvisible()
-            flag = true
-            blockField(false)
+            startNewGame()
         }
 
         binding.settingsGame.setOnClickListener {
-            showSettingsDialog(this, "")
+            showSettingsDialog(this)
         }
+
         initFieldButtons()
 
 //        androidHint()
+    }
+
+    private fun startNewGame() {
+        gameState = GameState()
+        setFieldInvisible()
+        flag = true
+        blockField(false)
     }
 
     private fun initFieldButtons() {
@@ -80,19 +94,17 @@ class MainActivity : AppCompatActivity() {
                 img.setImageResource(drawable)
                 img.visibility = View.VISIBLE
                 gameState.makeMove(space, 'x')
-//                board.placePiece('x', space)
                 flag = false
 
-                androidHint()
+                if (settings.gameMode == PLAYER_VS_BOT)
+                    androidHint()
 
+            } else {
+                img.setImageResource(R.drawable.of)
+                img.visibility = View.VISIBLE
+                gameState.makeMove(space, 'o')
+                flag = true
             }
-//            } else {
-//                img.setImageResource(R.drawable.of)
-//                img.visibility = View.VISIBLE
-//                gameState.makeMove(space, 'o')
-//                flag = true
-////                board.placePiece('0', space)
-//            }
 
         if (gameState.isOver()) {
             blockField(true)
@@ -106,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showGameOverDialog(context: Context, message: String) {
+    private fun showGameOverDialog(context: Context, message: String) {
         val alertDialogBuilder = AlertDialog.Builder(context)
 
         val inflater = LayoutInflater.from(context)
@@ -124,19 +136,80 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    fun showSettingsDialog(context: Context, message: String) {
+    private fun showSettingsDialog(context: Context) {
         val alertDialogBuilder = AlertDialog.Builder(context)
-
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.item_settings, null)
         alertDialogBuilder.setView(view)
-
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
 
+        val tempSettings = settings.copy()
+
+        val gameMode = view.findViewById<RadioGroup>(R.id.item_settings_game_mode)
+        val gameDifficulty = view.findViewById<RadioGroup>(R.id.item_settings_difficulty)
+//        val gameWhoFirst = view.findViewById<RadioGroup>(R.id.item_settings_who_the_first)
+
+
+        if (settings.gameMode == PLAYER_VS_PLAYER) {
+            view.findViewById<RadioButton>(R.id.item_settings_player_vs_player).isChecked = true
+            gameDifficulty.visibility = View.GONE
+        } else {
+            view.findViewById<RadioButton>(R.id.item_settings_player_vs_bot).isChecked = true
+            gameDifficulty.visibility = View.VISIBLE
+        }
+        if (settings.gameDifficulty == EASY)
+            view.findViewById<RadioButton>(R.id.item_settings_difficulty_easy).isChecked = true
+        else
+            view.findViewById<RadioButton>(R.id.item_settings_difficulty_hard).isChecked = true
+//
+//        if (settings.whoGoesFirst == X_THE_FIRST)
+//            view.findViewById<RadioButton>(R.id.item_settings_who_the_first_X).isChecked = true
+//        else
+//            view.findViewById<RadioButton>(R.id.item_settings_who_the_first_O).isChecked = true
+//
+
+        gameMode.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.item_settings_player_vs_player -> {
+                    tempSettings.gameMode = PLAYER_VS_PLAYER
+                    gameDifficulty.visibility = View.GONE
+                }
+
+                R.id.item_settings_player_vs_bot -> {
+                    tempSettings.gameMode = PLAYER_VS_BOT
+                    gameDifficulty.visibility = View.VISIBLE
+                }
+
+                else -> Toast.makeText(this, "$checkedId", Toast.LENGTH_SHORT).show()
+            }
+        }
+        gameDifficulty.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.item_settings_difficulty_easy -> tempSettings.gameDifficulty = EASY
+                R.id.item_settings_difficulty_hard -> tempSettings.gameDifficulty = HARD
+                else -> Toast.makeText(this, "$checkedId", Toast.LENGTH_SHORT).show()
+            }
+        }
+//        gameWhoFirst.setOnCheckedChangeListener { _, checkedId ->
+//            when (checkedId) {
+//                R.id.item_settings_who_the_first_X -> tempSettings.whoGoesFirst = X_THE_FIRST
+//                R.id.item_settings_who_the_first_O -> tempSettings.whoGoesFirst = O_THE_FIRST
+//                else -> Toast.makeText(this, "$checkedId", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+        view.findViewById<AppCompatImageButton>(R.id.item_settings_btn_ok)
+            .setOnClickListener {
+                settings = tempSettings.copy()
+                Log.d("settings", "showSettingsDialog: $tempSettings $settings ")
+                startNewGame()
+                alertDialog.cancel()
+            }
+
         view.findViewById<AppCompatImageButton>(R.id.item_settings_btn_cancel)
             .setOnClickListener {
-                alertDialog.cancel()
+                alertDialog.dismiss()
             }
     }
 
