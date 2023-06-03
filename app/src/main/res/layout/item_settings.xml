@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:clickable="false"
+    android:focusable="false"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <!--        <ImageView-->
+        <!--            android:contentDescription="@string/background"-->
+        <!--            android:id="@+id/item_image"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="150dp"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            android:src="@drawable/alert2"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <RadioGroup
+            android:id="@+id/who_is_playing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:checkedButton="@id/player_vs_bot"
+            app:layout_constraintBottom_toTopOf="@id/who_the_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/player_vs_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/player_vs_player" />
+
+            <RadioButton
+                android:id="@+id/player_vs_bot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/player_vs_bot" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/who_the_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:checkedButton="@id/X_the_first"
+            app:layout_constraintBottom_toTopOf="@id/difficulty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/who_is_playing">
+
+            <RadioButton
+                android:id="@+id/X_the_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/x_goes_first" />
+
+            <RadioButton
+                android:id="@+id/O_the_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_0_goes_first" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:checkedButton="@id/easy"
+            app:layout_constraintBottom_toTopOf="@id/item_settings_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/who_the_first">
+
+            <RadioButton
+                android:id="@+id/easy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/easy" />
+
+            <RadioButton
+                android:id="@+id/hard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hard" />
+
+        </RadioGroup>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/item_settings_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/difficulty">
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/item_settings_btn_ok"
+                android:layout_width="50dp"
+                android:layout_height="24dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/ok"
+                android:contentDescription="@string/btn_cancel" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/item_settings_btn_cancel"
+                android:layout_width="50dp"
+                android:layout_height="24dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/ok"
+                android:contentDescription="@string/btn_ok" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
