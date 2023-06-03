@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
             blockField(false)
         }
 
+        binding.settingsGame.setOnClickListener {
+            showSettingsDialog(this, "")
+        }
         initFieldButtons()
 
 //        androidHint()
@@ -94,16 +97,16 @@ class MainActivity : AppCompatActivity() {
         if (gameState.isOver()) {
             blockField(true)
             if (gameState.winnerExists()) {
-                showCustomAlertDialog(
+                showGameOverDialog(
                     this,
                     "Player ${gameState.winner!!.uppercaseChar()} ${getString(R.string.won)}"
                 )
             } else
-                showCustomAlertDialog(this, getString(R.string.draw))
+                showGameOverDialog(this, getString(R.string.draw))
         }
     }
 
-    fun showCustomAlertDialog(context: Context, message: String) {
+    fun showGameOverDialog(context: Context, message: String) {
         val alertDialogBuilder = AlertDialog.Builder(context)
 
         val inflater = LayoutInflater.from(context)
@@ -116,6 +119,22 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
 
         view.findViewById<AppCompatImageButton>(R.id.item_alert_btn_ok)
+            .setOnClickListener {
+                alertDialog.cancel()
+            }
+    }
+
+    fun showSettingsDialog(context: Context, message: String) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.item_settings, null)
+        alertDialogBuilder.setView(view)
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+
+        view.findViewById<AppCompatImageButton>(R.id.item_settings_btn_cancel)
             .setOnClickListener {
                 alertDialog.cancel()
             }
