@@ -17,10 +17,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:contentDescription="@string/field"
         android:id="@+id/item_field"
         android:layout_width="380dp"
         android:layout_height="380dp"
+        android:contentDescription="@string/field"
         android:scaleType="fitCenter"
         android:src="@drawable/field"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,11 +32,24 @@
         android:id="@+id/new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_game"
-        android:fontFamily="@font/press_start"
-        android:textSize="16sp"
         android:layout_margin="16dp"
+        android:fontFamily="@font/press_start"
+        android:text="@string/new_game"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/settings_game"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/settings_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/press_start"
+        android:text="@string/settings"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/new_game"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -110,18 +123,18 @@
             layout="@layout/item_field" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <FrameLayout
         android:id="@+id/isOver"
         android:layout_width="380dp"
         android:layout_height="380dp"
-        app:layout_constraintEnd_toEndOf="@id/item_field"
-        app:layout_constraintStart_toStartOf="@id/item_field"
-        app:layout_constraintTop_toTopOf="@id/item_field"
-        app:layout_constraintBottom_toBottomOf="@id/item_field"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/item_field"
+        app:layout_constraintEnd_toEndOf="@id/item_field"
+        app:layout_constraintStart_toStartOf="@id/item_field"
+        app:layout_constraintTop_toTopOf="@id/item_field" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
