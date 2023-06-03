@@ -2,18 +2,17 @@
     <string name="app_name">WoodenTicTacToe</string>
     <string name="background">backGround</string>
     <string name="field">field</string>
-    <string name="load_view">Load View</string>
     <string name="game_over">Game Over</string>
     <string name="btn_ok">btn OK</string>
-    <string name="draw">nobody won, draw</string>
+    <string name="draw">Nobody won, draw</string>
     <string name="won">WON!</string>
-    <string name="new_game">new game</string>
-    <string name="player_vs_player">player vs player</string>
-    <string name="player_vs_bot">player vs bot</string>
-    <string name="btn_cancel">cancel</string>
+    <string name="new_game">New game</string>
+    <string name="player_vs_player">Player vs player</string>
+    <string name="player_vs_bot">Player vs bot</string>
+    <string name="btn_cancel">Cancel</string>
     <string name="x_goes_first">X goes first</string>
-    <string name="_0_goes_first">0 goes first</string>
-    <string name="easy">easy</string>
-    <string name="hard">hard</string>
-    <string name="settings">settings</string>
+    <string name="o_goes_first">0 goes first</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
+    <string name="game_settings">Settings</string>
 </resources>
