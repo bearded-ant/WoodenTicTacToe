@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import com.minigames.woodentictactoe.databinding.ActivityMainBinding
+import com.minigames.woodentictactoe.game.AndroidPlayer
 import com.minigames.woodentictactoe.game.EASY
 import com.minigames.woodentictactoe.game.GameState
 import com.minigames.woodentictactoe.game.HARD
@@ -108,10 +109,10 @@ class MainActivity : AppCompatActivity() {
 
         if (gameState.isOver()) {
             blockField(true)
-            if (gameState.winnerExists()) {
+            if (gameState.winnerExists()!=null) {
                 showGameOverDialog(
                     this,
-                    "Player ${gameState.winner!!.uppercaseChar()} ${getString(R.string.won)}"
+                    "Player ${gameState.winnerExists()!!.uppercaseChar()} ${getString(R.string.won)}"
                 )
             } else
                 showGameOverDialog(this, getString(R.string.draw))
@@ -232,14 +233,15 @@ class MainActivity : AppCompatActivity() {
     private fun androidHint() {
         if (!flag) {
             if (!gameState.isOver()) {
-                val availableHint = gameState.availableMoves.random()
-                val space = 3 * availableHint.first + availableHint.second
-                Log.d("ai_hint", "androidHint: ${gameState.availableMoves} $availableHint $space ")
-                if (gameState.isBlankSpace(space)) {
-                    gameState.makeMove(space, 'o')
-                    drawHint(space, R.drawable.of)
-                    flag = true
-                } else Toast.makeText(this, "наебался $space!", Toast.LENGTH_LONG).show()
+                var space = 0
+                if (settings.gameDifficulty == EASY)
+                    space = AndroidPlayer().easyMove(gameState)
+                else
+                    space = AndroidPlayer().hardMove(b,'x')
+
+                gameState.makeMove(space, 'o')
+                drawHint(space, R.drawable.of)
+                flag = true
             }
         }
     }

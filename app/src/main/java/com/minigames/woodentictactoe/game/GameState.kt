@@ -16,17 +16,17 @@ const val HARD = 1
 
 
 class GameState(
-    val playerPiece: Char = 'x',
-    val opponentPiece: Char = 'o'
+   var board: Board
 ) {
-
+    val humanPiece: Char = 'x'
+    val androidPiece: Char = 'o'
     private val maxIndex: Int = WIDTH - 1
     private val minimumMovesRequiredToWin: Int = (2 * WIDTH) - 1
 
 //    private var impossibleLines: MutableList<String> = mutableListOf()
 
-    private var board = Board(WIDTH)
-    var winner: Char? = null
+    //    private var board = Board(WIDTH)
+    private var winner: Char? = null
 
     fun makeMove(space: Int, piece: Char) {
         board = board.placePiece(piece, space)
@@ -51,9 +51,8 @@ class GameState(
 
     fun isDraw(): Boolean = board.numberOfBlanks == 0 && winner == null
 
-    fun winnerExists(): Boolean {
-        return winner != null
-    }
+    fun winnerExists(): Char? = winner
+
 
 //    fun lost(piece: Char): Boolean {
 //        return winner != null && winner != piece
